@@ -23,8 +23,10 @@ class SimpleDictionary
     end
     def search(number)
         if @@hash.has_value?number
+            puts "Output :"
             puts "#{number} exists"
         else
+            puts "Output :"
             puts "#{number} doesn't exist" 
         end
     end
@@ -66,7 +68,7 @@ loop do
         puts "Wrong Input. Please enter correct"
         break
     end
-    puts "Would you like to continue press Y / N"
+    puts "Would you like to continue then press Y"
     inputContinue = gets.chomp
     if inputContinue != "Y" && inputContinue != "y"
         break
