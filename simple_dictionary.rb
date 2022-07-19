@@ -63,7 +63,7 @@ loop do
         inputNumberSearch = gets.chomp
         simpleDictionary.search(inputNumberSearch)
     else
-        "You gave me #{inputMethod} -- I have no idea what to do with that."
+        puts "Wrong Input. Please enter correct"
         break
     end
     puts "Would you like to continue press Y / N"
