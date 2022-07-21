@@ -1,13 +1,14 @@
 class Student
-    def setStudDetails(rollNum, studName, mark1, mark2, mark3)
+    def setStudDetails(rollNum, studName, *args)
         @rollNum = rollNum
         @studName = studName
-        @mark1 = mark1
-        @mark2 = mark2
-        @mark3 = mark3
+        @marks = args 
     end
     def calculateTotal
-        @totalMarks = @mark1 + @mark2 + @mark3
+        @totalMarks = 0
+        for i in @marks do
+            @totalMarks = @totalMarks + i
+        end
     end    
     def displayStudDetails
         puts("rollNum = #{@rollNum} studName = #{@studName} totalMarks = #{@totalMarks}")
@@ -17,6 +18,6 @@ end
 class StudentDemo < Student
 end
 student = StudentDemo.new
-student.setStudDetails(1234, "Test", 54, 55, 56)
+student.setStudDetails(1234, "Test", 54, 55, 56, 40)
 student.calculateTotal
 student.displayStudDetails
