@@ -4,11 +4,11 @@ class DateOperation
         input_date = Date.parse(input_date)
         puts "The Outputs is:"
         if input_type == 'IST'
-            puts Time.now.strftime("%d/%m/%Y")  
+            puts input_date.strftime("%d/%m/%Y")  
         elsif input_type == 'ORT'
-            puts Time.now.strftime("%Y-%m-%d %H:%M:%S %z")  
+            puts input_date.strftime("%Y-%m-%d %H:%M:%S %z")  
         else
-            puts Time.now.strftime("%m/%d/%Y")
+            puts input_date.strftime("%m/%d/%Y")
         end   
     end
 end
