@@ -1,0 +1,2 @@
+Ruby has 10000 in his bank account. 
+And he wants to transfer 4500 to Sushil's account
