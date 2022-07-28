@@ -1,23 +1,26 @@
 class Student
-    def setStudDetails(rollNum, studName, *args)
-        @rollNum = rollNum
-        @studName = studName
-        @marks = args 
+    attr_accessor :rollnum, :studname, :marks
+    def initialize(rollnum, studname, *marks)
+       @rollnum = rollnum
+       @studname = studname
+       @marks = marks
     end
-    def calculateTotal
-        @totalMarks = 0
+    def calculatetotal
+        @totalmarks = 0
         for i in @marks do
-            @totalMarks = @totalMarks + i
+            @totalmarks = @totalmarks + i
         end
     end    
-    def displayStudDetails
-        puts("rollNum = #{@rollNum} studName = #{@studName} totalMarks = #{@totalMarks}")
+    def displaystuddetails
+        puts("rollnum = #{@rollnum} studname = #{@studname} totalmarks = #{@totalmarks}")
     end
 end
 
 class StudentDemo < Student
 end
-student = StudentDemo.new
-student.setStudDetails(1234, "Test", 54, 55, 56, 40)
-student.calculateTotal
-student.displayStudDetails
+student = StudentDemo.new(10, 'Kinkar', 55, 55 , 80)
+student.calculatetotal
+student.displaystuddetails
+student.marks = 55, 55 , 80, 100
+student.calculatetotal
+student.displaystuddetails
