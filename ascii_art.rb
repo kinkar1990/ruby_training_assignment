@@ -1,9 +1,9 @@
 puts "Enter The Range : "
-endIndex = gets 
+end_index = gets 
 i = 1
-endIndex = endIndex.to_i
+end_index = end_index.to_i
 puts "\n\nThe Ascii Art : \n\n"
-while i <= endIndex
+while i <= end_index
     j = 1
     if i%2 == 0
         k = i.to_s + "\t"
