@@ -7,9 +7,9 @@ class SimpleDictionary
             @@hash.store(@@hash.keys.last + 1, number) 
         end
     end
-    def update(position, inputNumberUpdate)
+    def update(position, input_number_update)
         if @@hash.key?position
-            @@hash[position] = inputNumberUpdate
+            @@hash[position] = input_number_update
         else
             puts "Postion - #{position} doesn't exist"
         end
@@ -38,39 +38,39 @@ class SimpleDictionary
     end
 end
 
-simpleDictionary = SimpleDictionary.new
+simple_dictionary = SimpleDictionary.new
 loop do 
     puts "Please enter 1 => Add 2 => Update 3 => Delete 4 => Search"
-    inputMethod = gets.chomp.to_i
-    case inputMethod
+    input_method = gets.chomp.to_i
+    case input_method
     when 1
         puts "Enter the number to add"
-        inputAdd = gets.chomp
-        simpleDictionary.add(inputAdd)
-        simpleDictionary.show
+        input_add = gets.chomp
+        simple_dictionary.add(input_add)
+        simple_dictionary.show
     when 2
         puts "Enter the position to update"
-        inputPositionUpdate = gets.chomp
+        input_position_update = gets.chomp
         puts "Enter the number to update"
-        inputNumberUpdate = gets.chomp
-        simpleDictionary.update(inputPositionUpdate.to_i, inputNumberUpdate)
-        simpleDictionary.show
+        input_number_update = gets.chomp
+        simple_dictionary.update(input_position_update.to_i, input_number_update)
+        simple_dictionary.show
     when 3
         puts "Enter the position to delete"
-        inputPositionDelete = gets.chomp
-        simpleDictionary.delete(inputPositionDelete.to_i)
-        simpleDictionary.show
+        input_position_delete = gets.chomp
+        simple_dictionary.delete(input_position_delete.to_i)
+        simple_dictionary.show
     when 4
         puts "Enter the number to search"
-        inputNumberSearch = gets.chomp
-        simpleDictionary.search(inputNumberSearch)
+        input_number_search = gets.chomp
+        simple_dictionary.search(input_number_search)
     else
         puts "Wrong Input. Please enter correct"
         break
     end
     puts "Would you like to continue then press Y"
-    inputContinue = gets.chomp
-    if inputContinue != "Y" && inputContinue != "y"
+    input_continue = gets.chomp
+    if input_continue != "Y" && input_continue != "y"
         break
     end
 end
