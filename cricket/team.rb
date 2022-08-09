@@ -48,7 +48,35 @@ class Team
             end
         end
     end
-    def calculate_required_rate(match)
-        @required_rate = (@tot_run_scored.to_f/match.overs).round(2)
+    def calculate_required_rate(match, type)
+        if type == 'batting'
+            @required_rate = (@tot_run_scored.to_f/match.overs).round(2)
+        else
+            @required_rate = (@tot_run_given.to_f/match.overs).round(2)
+        end
+    end
+    def check_player_type()
+        loop do 
+            puts "Enter player type =  batsman - press 1/bowler - press 2/allrounder - press 3"
+            player_type = gets.chomp.to_i
+            if player_type != 1 && player_type != 2 && player_type != 3
+                puts "Please enter correct player type"
+            else
+                return player_type
+            end
+        end
+    end
+    def check_player_name()
+        loop do 
+            puts "Enter player name"
+            player_name = gets.chomp
+            if player_name == ""
+                puts "Please enter player name"
+            elsif !@players.empty? && @players.has_key?(player_name)
+                puts "player already exists." 
+            else
+                return player_name
+            end
+        end
     end
 end

@@ -29,7 +29,13 @@ class Match
         puts "Match Type - #{@type} | Total Overs - #{@overs}"
     end
     def select_toss
-        @toss = true
+        r = Random.new
+        random_sample = r.rand(1...20) 
+        if random_sample % 2 == 0
+            @toss = true
+        else
+            @toss = false
+        end
     end
     def batting(team)
         i = 1
@@ -41,6 +47,10 @@ class Match
             while j <= one_over
                 unit_run_batting = team.players[batting_player].check_run_or_out_batting(self)
                 team.tot_run_scored = team.tot_run_scored + unit_run_batting
+                if(team.tot_run_scored > team.tot_run_given && team.tot_run_scored > 0 && team.tot_run_given > 0)
+                    do_break = true
+                    break
+                end
                 if team.players[batting_player].out === true
                     tot_player_out = tot_player_out + 1
                     if tot_player_out == team.tot_player
@@ -52,8 +62,11 @@ class Match
                 end
                 j = j + 1
             end
-            team.calculate_required_rate(self)
-            match_summary(team, 'batting')
+            if i == @overs || do_break
+                match_summary(team, true, false)
+            else
+                match_summary(team, false, false)
+            end
             break if do_break
             i = i + 1
         end
@@ -68,7 +81,7 @@ class Match
             while j <= one_over
                 unit_run_bowling = team.players[bowling_player].check_run_or_out_bowling(self)
                 team.tot_run_given = team.tot_run_given + unit_run_bowling
-                if(team.tot_run_scored < team.tot_run_given)
+                if(team.tot_run_scored < team.tot_run_given && team.tot_run_scored > 0 && team.tot_run_given > 0)
                     do_break = true
                     break
                 end
@@ -82,15 +95,51 @@ class Match
                 end
                 j = j + 1
             end
+            if i == @overs || do_break
+                match_summary(team, false, true)
+            else
+                match_summary(team, false, false)
+            end
             break if do_break
             i = i + 1
         end
-        match_summary(team, 'bowling')
     end
-    def match_summary(tot_summary, type)
-        if(type == 'batting') 
-            out_file = File.new("match_summary.txt", "w")
-            out_file.puts("Team Name - #{tot_summary.team_name}")
+    def match_summary(tot_summary, batting_ending, bowling_ending)
+        out_file = File.new("match_summary.txt", "w+")
+        out_file.puts("Team Name - #{tot_summary.team_name}")
+        ending = false
+        if @toss === true
+            batting_summary(out_file, tot_summary)
+            tot_summary.calculate_required_rate(self, 'batting')
+            out_file.puts("Required Run Rate - #{tot_summary.required_rate}%")
+            bowling_summary(out_file, tot_summary)
+            if bowling_ending === true
+                ending = true
+            end
+        else
+            bowling_summary(out_file, tot_summary)
+            tot_summary.calculate_required_rate(self, 'bowling')
+            out_file.puts("Required Run Rate - #{tot_summary.required_rate}%")
+            batting_summary(out_file, tot_summary)
+            if batting_ending === true
+                ending = true
+            end
+        end
+        if ending === true
+            if tot_summary.tot_run_scored > tot_summary.tot_run_given
+                diff = tot_summary.tot_run_scored - tot_summary.tot_run_given
+                out_file.puts("#{tot_summary.team_name} won by #{diff} runs")
+            elsif tot_summary.tot_run_scored < tot_summary.tot_run_given
+                diff = tot_summary.tot_run_given - tot_summary.tot_run_scored
+                out_file.puts("#{tot_summary.team_name} lost")
+            else
+                out_file.puts("Match Drawn")
+            end
+        end
+        out_file.close    
+    end
+    def batting_summary(out_file, tot_summary)
+        if tot_summary.tot_run_scored > 0
             out_file.puts("Batting Summary")
             out_file.puts("Player Name | Player Type | Run | Strike rate | Out")
             tot_summary.players.each do |key, value|
@@ -98,12 +147,12 @@ class Match
                 out_file.puts("#{tot_summary.players[key].player_name} #{captain} | #{tot_summary.players[key].player_type_conversion(tot_summary.players[key].player_type)} | #{tot_summary.players[key].run_scored}(#{tot_summary.players[key].ball_played}) | #{tot_summary.players[key].strike_rate}% | #{tot_summary.players[key].out_type}")
             end
             out_file.puts("Total Run - #{tot_summary.tot_run_scored}")
-            out_file.puts("Required Run Rate - #{tot_summary.required_rate}%")
             out_file.puts("--------------------------------------------------")
             out_file.puts("--------------------------------------------------")
-            out_file.close
-        else
-            out_file = File.new("match_summary.txt", "a")
+        end
+    end
+    def bowling_summary(out_file, tot_summary)
+        if tot_summary.tot_run_given > 0
             out_file.puts("Bowling Summary")
             out_file.puts("Player Name | Player Type | Over | Run | Wicket | Economy")
             tot_summary.players.each do |key, value|
@@ -117,16 +166,17 @@ class Match
             out_file.puts("Total Run - #{tot_summary.tot_run_given}")
             out_file.puts("--------------------------------------------------")
             out_file.puts("--------------------------------------------------")
-            if tot_summary.tot_run_scored > tot_summary.tot_run_given
-                diff = tot_summary.tot_run_scored - tot_summary.tot_run_given
-                out_file.puts("#{tot_summary.team_name} won by #{diff} runs")
-            elsif tot_summary.tot_run_scored < tot_summary.tot_run_given
-                diff = tot_summary.tot_run_given - tot_summary.tot_run_scored
-                out_file.puts("#{tot_summary.team_name} lost")
+        end
+    end
+    def check_team_name()
+        loop do 
+            puts "Enter the team name"
+            team_name = gets.chomp
+            if team_name == ""
+                puts "Please enter team name"
             else
-                out_file.puts("Match Drawn")
+                return team_name
             end
-            out_file.close
         end
     end
 end
