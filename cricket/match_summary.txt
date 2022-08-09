@@ -1,0 +1,22 @@
+Team Name - India
+Batting Summary
+Player Name | Player Type | Run | Strike rate | Out
+Rohit  | Batsman | 0(1) | 0.0% | stumping
+Kohli  | Batsman | 9(4) | 225.0% | stumping
+Bhumra  | Bowler | 4(2) | 200.0% | bold
+Bhubi  | Bowler | 13(5) | 260.0% | run out
+Hardik (C) | Allrounder | 3(2) | 150.0% | catch out
+Total Run - 29
+Required Run Rate - 9.67%
+--------------------------------------------------
+--------------------------------------------------
+Bowling Summary
+Player Name | Player Type | Over | Run | Wicket | Economy
+Rohit | Batsman | 0.0 | 0 | 0 | 0
+Kohli | Batsman | 0.0 | 0 | 0 | 0
+Bhumra | Bowler | 1.0 | 6 | 2 | 6.0
+Bhubi | Bowler | 0.5 | 2 | 3 | 4.0
+Hardik | Allrounder | 0.0 | 0 | 0 | 0
+--------------------------------------------------
+--------------------------------------------------
+India won by 21 runs
