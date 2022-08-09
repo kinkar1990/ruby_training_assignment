@@ -128,7 +128,7 @@ class Match
         if ending === true
             if tot_summary.tot_run_scored > tot_summary.tot_run_given
                 diff = tot_summary.tot_run_scored - tot_summary.tot_run_given
-                out_file.puts("#{tot_summary.team_name} won by #{diff} runs")
+                out_file.puts("#{tot_summary.team_name} won")
             elsif tot_summary.tot_run_scored < tot_summary.tot_run_given
                 diff = tot_summary.tot_run_given - tot_summary.tot_run_scored
                 out_file.puts("#{tot_summary.team_name} lost")
