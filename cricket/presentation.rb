@@ -1,6 +1,7 @@
 require './match'
 require './player'
 require './team'
+require './test'
 input_match_type = ''
 loop do 
     puts "Enter the match type - t20 / odi / test"
@@ -11,16 +12,27 @@ loop do
         break
     end
 end
-match = Match.new(input_match_type, false, 0, {}, 6, {})
+if input_match_type == "test"
+    match = Test.new(input_match_type, false, 0)
+else
+    match = Match.new(input_match_type, false, 0)
+end
 match.set_over_days
 team_name = match.check_team_name
 i = 1
-team = Team.new(team_name, 5, 0, 0, {}, 0, 0)
-while i <= team.tot_player
+team = Team.new(team_name, 0, 0, {}, 0, 0)
+if input_match_type == "test"
+    team2 = Team.new(team_name, 0, 0, {}, 0, 0) 
+end
+while i <= team.class::TotPlayer
     player_type = team.check_player_type
     player_name = team.check_player_name
-    player = Player.new(player_type, player_name, 0, 0, 0, 0, false, false, "", 0, 0, 0, 0)
+    player = Player.new(player_type, player_name, 0, false, 0, 0, false, false, "", 0, 0, 0, 0)
     team.players[player.player_name] = player
+    if input_match_type == "test"
+        player2 = Player.new(player_type, player_name, 0, false, 0, 0, false, false, "", 0, 0, 0, 0)
+        team2.players[player.player_name] = player2 
+    end
     i = i + 1
 end
 puts "--------------------------------------------------"
@@ -30,16 +42,50 @@ puts "--------------------------------------------------"
 puts "--------------------------------------------------"
 if match.select_toss === true
     puts "Won toss and elected to bat"
-    match.batting(team)
-    puts "--------------------------------------------------"
-    puts "--------------------------------------------------"
-    match.bowling(team)
+    if input_match_type == "test"
+        puts "1st Innings"
+        match.batting(team, team2, 1)
+        puts "--------------------------------------------------"
+        puts "--------------------------------------------------"
+        puts "1st Innings"
+        match.bowling(team, team2, 1)
+        puts "--------------------------------------------------"
+        puts "--------------------------------------------------"
+        puts "2nd Innings"
+        match.batting(team, team2, 2)
+        puts "--------------------------------------------------"
+        puts "--------------------------------------------------"
+        puts "2nd Innings"
+        match.bowling(team, team2, 2)
+    else
+        match.batting(team)
+        puts "--------------------------------------------------"
+        puts "--------------------------------------------------"
+        match.bowling(team)
+    end
 else
     puts "Failed toss and elected to ball"
-    match.bowling(team)
-    puts "--------------------------------------------------"
-    puts "--------------------------------------------------"
-    match.batting(team)
+    if input_match_type == "test"
+        puts "1st Innings"
+        match.bowling(team, team2, 1)
+        puts "--------------------------------------------------"
+        puts "--------------------------------------------------"
+        puts "1st Innings"
+        match.batting(team, team2, 1)
+        puts "--------------------------------------------------"
+        puts "--------------------------------------------------"
+        puts "2nd Innings"
+        match.bowling(team, team2, 2)
+        puts "--------------------------------------------------"
+        puts "--------------------------------------------------"
+        puts "2nd Innings"
+        match.batting(team, team2, 2)
+    else
+        match.bowling(team)
+        puts "--------------------------------------------------"
+        puts "--------------------------------------------------"
+        match.batting(team)
+    end
 end
 
 

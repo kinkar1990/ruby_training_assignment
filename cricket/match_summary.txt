@@ -1,23 +1,50 @@
-Team Name - India
+Team Name - West Indies
+--------------------------------------------------
+--------------------------------------------------
+Innings 1
+--------------------------------------------------
+--------------------------------------------------
 Bowling Summary
-Player Name | Player Type | Over | Run | Wicket | Economy
-Kohli | Batsman | 0.0 | 0 | 0 | 0
-Rohit | Batsman | 0.0 | 0 | 0 | 0
-Bhumra | Bowler | 1.3 | 12 | 3 | 9.0
-Bhubi | Bowler | 1.0 | 10 | 2 | 10.0
-Hardik | Allrounder | 0.0 | 0 | 0 | 0
-Total Run - 22
 --------------------------------------------------
 --------------------------------------------------
-Required Run Rate - 7.33%
+Player Name | Over | Run | Wicket | Economy
+Holder | 1.0 | 9 | 3 | 9.0
+McCoy | 0.4 | 2 | 2 | 0
+Total Run - 11
+--------------------------------------------------
+--------------------------------------------------
 Batting Summary
+--------------------------------------------------
+--------------------------------------------------
 Player Name | Player Type | Run | Strike rate | Out
-Kohli  | Batsman | 0(1) | 0.0% | bold
-Rohit  | Batsman | 1(2) | 50.0% | stumping
-Bhumra  | Bowler | 0(1) | 0.0% | bold
-Bhubi  | Bowler | 4(1) | 400.0% | 
-Hardik (C) | Allrounder | 18(5) | 360.0% | stumping
-Total Run - 23
+Holder (C) | Batsman | 3(2) | 150.0% | bold
+Brooks  | Batsman | 6(2) | 300.0% | catch out
+Thomas  | Batsman | 5(3) | 166.67% | stumping
+McCoy  | Bowler | 4(4) | 100.0% | caught behind
+paul  | Bowler | 0(1) | 0.0% | stumping
+Total Run - 18
 --------------------------------------------------
 --------------------------------------------------
-India won
+Innings 2
+--------------------------------------------------
+--------------------------------------------------
+Bowling Summary
+--------------------------------------------------
+--------------------------------------------------
+Player Name | Over | Run | Wicket | Economy
+Holder | 1.3 | 5 | 3 | 3.75
+McCoy | 1.0 | 5 | 2 | 5.0
+Total Run - 10
+--------------------------------------------------
+--------------------------------------------------
+Batting Summary
+--------------------------------------------------
+--------------------------------------------------
+Player Name | Player Type | Run | Strike rate | Out
+Holder  | Batsman | 1(2) | 50.0% | run out
+Brooks  | Batsman | 2(3) | 66.67% | stumping
+Thomas  | Batsman | 1(1) | 100.0% | 
+Total Run - 4
+--------------------------------------------------
+--------------------------------------------------
+West Indies won

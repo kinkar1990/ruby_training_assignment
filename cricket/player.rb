@@ -24,7 +24,7 @@ class Player
         case @check_run
         when 9..14
             @out = true
-            @out_type = match.run_wicket[@check_run]
+            @out_type = match.class::RunWicket[@check_run]
             unit_run_batting = 0
         when 7..8
             @run_scored = @run_scored + 1
@@ -60,10 +60,10 @@ class Player
             unit_run_bowling = @check_run
         end
         @ball_bowled = @ball_bowled + 1
-        if @run_given > 0 && @ball_bowled > 0 && @ball_bowled < match.one_over
-            @bowling_economy = (@run_given/match.ball_to_float[@ball_bowled]).round(2)
+        if @run_given > 0 && @ball_bowled > 0 && @ball_bowled < match.class::OneOver
+            @bowling_economy = (@run_given/@ball_bowled).round(2)
         else
-            @bowling_economy = (@run_given/(@ball_bowled.to_f/match.one_over)).round(2)
+            @bowling_economy = (@run_given/(@ball_bowled.to_f/match.class::OneOver)).round(2)
         end
         return unit_run_bowling
     end

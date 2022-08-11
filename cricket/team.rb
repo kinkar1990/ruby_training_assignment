@@ -1,8 +1,8 @@
 class Team
-    attr_accessor :team_name, :tot_player, :run_rate, :required_rate, :players, :tot_run_scored, :tot_run_given
-    def initialize(team_name, tot_player, run_rates, required_rate, players, tot_run_scored, tot_run_given)
+    TotPlayer = 5
+    attr_accessor :team_name, :run_rate, :required_rate, :players, :tot_run_scored, :tot_run_given
+    def initialize(team_name, run_rates, required_rate, players, tot_run_scored, tot_run_given)
         @team_name = team_name
-        @tot_player = tot_player
         @run_rate = run_rate
         @required_rate = required_rate
         @players = players
